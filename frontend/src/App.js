@@ -6,11 +6,13 @@ import Cancel from './components/cancel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import CartProvider from './contexts/CartContext';
 
 function App() {
 
 
     return (
+        <CartProvider>
         <Container>
             <NavbarComponent />
             <BrowserRouter>
@@ -22,6 +24,7 @@ function App() {
             </BrowserRouter>
 
         </Container>
+        </CartProvider>
     );
 }
 

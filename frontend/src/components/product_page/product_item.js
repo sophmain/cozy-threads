@@ -1,7 +1,10 @@
-import React from 'react'
-import {Card, Button} from 'react-bootstrap'
+import React, {useContext} from 'react'
+import {Card, Button, Form} from 'react-bootstrap'
+import { CartContext } from '../../contexts/CartContext';
 
-function ProductItem({product}) {
+function ProductItem({ product }) {
+    const {getProductQuantity, addOneToCart, removeOneFromCart} = useContext(CartContext)
+    const productQuantity = getProductQuantity(product.id)
 
     return (
 
@@ -14,7 +17,16 @@ function ProductItem({product}) {
                             <Card.Text className="truncate-text">{product.description}</Card.Text>
                         </Card.Body>
                         <Card.Footer>
-                            <Button>Add to cart</Button>
+                            {productQuantity > 0 ? (
+<Form className="d-flex justify-content-between">
+    <Button onClick={()=>removeOneFromCart(product.id)} className="mx-1">-</Button>
+    <Form.Label >In cart: {productQuantity}</Form.Label>
+    <Button onClick={()=> addOneToCart(product.id)} className="mx-1">+</Button>
+</Form>
+                            ) : (
+<Button onClick={()=> addOneToCart(product.id)}>Add to cart</Button>
+                            )}
+
                         </Card.Footer>
                     </Card>
                 </div>
