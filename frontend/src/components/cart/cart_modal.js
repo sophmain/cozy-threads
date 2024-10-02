@@ -9,10 +9,10 @@ function CartModal({ show, onClose }) {
     (sum, product) => sum + product.quantity,
     0
   );
-console.log('items', items)
+
   async function checkout() {
     try {
-      await fetch(`/api/checkout`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/api/checkout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
