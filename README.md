@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+## Cozy Threads Write-up
+[Deployed site](https://cozy-threads-ngio.onrender.com/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Overview
+Cozy Threads is an ecommerce platform selling high-quality, ethically sourced apparel and accessories. The project includes a product catalog, shopping cart, and checkout using Stripe for payments. The backend is powered by Node.js and Express, with React managing the frontend. Sequelize is used for the SQLite database. Both frontend and backend are deployed as a single web service on Render, simplifying deployment and reducing complexity. Stripe handles secure payments.
 
-## Available Scripts
 
-In the project directory, you can run:
+### Architecture
+- Frontend: Built with React, it offers a responsive UI that interacts with the backend via API calls. React Router manages client-side routing, while React Context manages the shopping cart. The static files from the React build are served by Express.
+- Backend: The backend, built with Express, serves both the API and frontend. It provides API endpoints for fetching product data and initiating Stripe checkout sessions. Sequelize manages the SQLite database, seeded during deployment, and integrates Stripe to create secure payment sessions.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Key Features
+- Product Catalog: The frontend fetches product data from the API and displays it in the catalog. Product data is stored in SQLite and seeded on deployment. Products can be searched for by name or description from the home page. 
+- Shopping Cart: The cart state is managed via React Context and persisted in local storage. Future iterations could implement user authentication to manage carts on the backend. Users can modify the quantity of added items, remove items from the cart, and view the total price. 
+- Checkout with Stripe: Stripe’s Checkout API handles payments. Upon successful payment, users are redirected to a success page. Sensitive data like the Stripe secret key is managed via environment variables.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Trade-offs and Challenges
+- SQLite for Development: SQLite was selected for its simplicity and ease of use during development. However, since Render’s filesystem is ephemeral, all data is lost between deployments. For a production-grade application, a persistent database such as PostgreSQL or MySQL would be more appropriate to ensure long-term data storage.
+- Single Web Service Deployment: Initially, the frontend and backend were deployed as separate services, which added complexity in managing inter-service communication and deployments. By merging both frontend and backend into a single Express service, the deployment process was simplified. However, this approach can increase the server load since it now handles both API requests and static file serving, but since it’s a small application this is fine.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### Areas for Improvement
+- Error Handling and UX Improvements: More detailed error messages and loading indicators during checkout would improve the user experience.
+- UI/Design Enhancements: Adding individual product pages, size selection, and filtering options (ex. Item type) would improve the shopping experience. Adding an autocomplete dropdown for the search bar would be nice as well. User accounts to keep track of shipping info/order history, as well as targeted promotions/sales. 
+- Responsiveness: Better small screen experience and infinite scrolling on the product page would enhance site responsiveness.
+- Backend Enhancements: Implementing user authentication would allow carts to persist across devices and sessions.
+Stripe Webhooks: Webhooks could automate order fulfillment, refunds, and payment status updates.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Conclusion
+Cozy Threads provides a solid foundation for an ecommerce platform. Future improvements, such as persistent databases, user authentication, better error handling, overall design improvements, and the integration of Stripe webhooks, would increase the application’s scalability, security, and user-friendliness.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
