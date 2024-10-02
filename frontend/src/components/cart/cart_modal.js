@@ -2,6 +2,7 @@ import { Button, Modal } from "react-bootstrap";
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import CartItem from "./cart_item";
+import { API_BASE_URL } from "../../utils/api_url";
 
 function CartModal({ show, onClose }) {
   const { items, totalCost } = useContext(CartContext);
@@ -12,7 +13,7 @@ function CartModal({ show, onClose }) {
 
   async function checkout() {
     try {
-      await fetch(`${process.env.REACT_APP_API_URL}/api/checkout`, {
+      await fetch(`${API_BASE_URL}/api/checkout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

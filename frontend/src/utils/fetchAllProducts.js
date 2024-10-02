@@ -1,8 +1,8 @@
-// utils/productService.js
+import { API_BASE_URL } from "./api_url";
 
 export async function fetchAllProducts() {
   try {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/api/products`);
+    const response = await fetch(`${API_BASE_URL}/api/products`);
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
