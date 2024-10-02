@@ -37,20 +37,22 @@ function CartModal({ show, onClose }) {
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Cart({productCount} items)</Modal.Title>
+        <Modal.Title>Your cart: {productCount} items</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {productCount > 0 ? (
           <>
-            <h2>Items in your cart:</h2>
-            {items.map((product, i) => (
-              <CartItem key={i} product={product} />
-            ))}
-
-            <h1>Total: ${totalCost.toFixed(2)}</h1>
-            <Button variant="success" onClick={checkout}>
-              Purchase
-            </Button>
+            <div>
+              {items.map((product, i) => (
+                <CartItem key={i} product={product} />
+              ))}
+            </div>
+            <div className="d-flex flex-row justify-content-between">
+              <h4>Total: ${totalCost.toFixed(2)}</h4>
+              <Button variant="dark" onClick={checkout}>
+                Checkout
+              </Button>
+            </div>
           </>
         ) : (
           <h2>There are no items in your cart!</h2>

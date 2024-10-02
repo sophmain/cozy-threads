@@ -14,7 +14,7 @@ function NavbarComponent() {
   return (
     <>
       <Navbar expand="sm">
-        <Navbar.Brand href="/">CozyThreads</Navbar.Brand>
+        <Navbar.Brand href="/"><img src='logo.png' alt="logo" height={80}/></Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Button onClick={() => setShow(true)}>{`Cart (${productCount} ${

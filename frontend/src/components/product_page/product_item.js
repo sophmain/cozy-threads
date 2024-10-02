@@ -10,7 +10,13 @@ function ProductItem({ product }) {
   return (
     <div className="col-4 mb-4" key={product.name}>
       <Card className="h-100">
-        <Card.Img variant="top" className="object-fit-cover" src={product.imageUrl} alt={product.name} height={300}/>
+        <Card.Img
+          variant="top"
+          className="object-fit-cover"
+          src={product.imageUrl}
+          alt={product.name}
+          height={300}
+        />
         <Card.Body>
           <Card.Title className="font-weight-bold text-truncate">
             {product.name}
@@ -19,24 +25,17 @@ function ProductItem({ product }) {
           <Card.Text className="truncate-text">{product.description}</Card.Text>
         </Card.Body>
         <Card.Footer>
-          {productQuantity > 0 ? (
-            <Form className="d-flex justify-content-between">
-              <Button
-                onClick={() => removeOneFromCart(product.id)}
-                className="mx-1"
-              >
-                -
+          <div className="d-flex justify-content-end">
+            {productQuantity > 0 ? (
+              <Button className="bg-dark border-dark text-white" onClick={() => addOneToCart(product.id)}>
+                Added to cart
               </Button>
-              <Form.Label>In cart: {productQuantity}</Form.Label>
-              <Button onClick={() => addOneToCart(product.id)} className="mx-1">
-                +
+            ) : (
+              <Button className="btn-outline-dark" onClick={() => addOneToCart(product.id)}>
+                Add to cart
               </Button>
-            </Form>
-          ) : (
-            <Button onClick={() => addOneToCart(product.id)}>
-              Add to cart
-            </Button>
-          )}
+            )}
+          </div>
         </Card.Footer>
       </Card>
     </div>

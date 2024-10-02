@@ -1,6 +1,4 @@
 export const API_BASE_URL =
   process.env.NODE_ENV === 'development'
-    ? ''  // Use proxy in development
-    : process.env.REACT_APP_API_URL;  // Use production URL
-
-    
+    ? 'http://localhost:5000'  // Use proxy in development
+    : 'https://cozy-threads-ngio.onrender.com';  // Use production URL
