@@ -13,7 +13,7 @@ function CartModal({ show, onClose }) {
 
   async function checkout() {
     try {
-      await fetch(`${API_BASE_URL}/api/checkout`, {
+      await fetch(`/api/checkout`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

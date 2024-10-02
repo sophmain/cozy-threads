@@ -2,7 +2,7 @@ import { API_BASE_URL } from "./api_url";
 
 export async function getProductInfo(id) {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/products/${id}`);
+    const response = await fetch(`/api/products/${id}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch product with ID ${id}`);
     }
