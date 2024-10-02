@@ -60,7 +60,7 @@ app.post("/api/checkout", async (req, res) => {
       line_items: lineItems,
       mode: "payment",
       success_url: "https://cozy-threads-ngio.onrender.com/success",
-      cancel_url: "https://cozy-threads-ngio.onrender.com.com", // back to home
+      cancel_url: "https://cozy-threads-ngio.onrender.com", // back to home
     });
 
     res.json({ url: session.url });
