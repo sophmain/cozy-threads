@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "dev": "nodemon server"
+    "start": "npm rebuild sqlite3 && node server",
+    "dev": "nodemon server.js",
+  "install": "npm install sqlite3 --build-from-source"
   },
   "keywords": [],
   "author": "",
