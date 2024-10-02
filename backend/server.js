@@ -59,8 +59,8 @@ app.post("/api/checkout", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
       mode: "payment",
-      success_url: "https://cozy-threads-1.onrender.com/success",
-      cancel_url: "https://cozy-threads-1.onrender.com", // back to home
+      success_url: "https://cozy-threads-ngio.onrender.com/success",
+      cancel_url: "https://cozy-threads-ngio.onrender.com.com", // back to home
     });
 
     res.json({ url: session.url });
