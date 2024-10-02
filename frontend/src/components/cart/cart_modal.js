@@ -37,7 +37,7 @@ function CartModal({ show, onClose }) {
   return (
     <Modal show={show} onHide={onClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Your cart: {productCount} items</Modal.Title>
+        <Modal.Title>{`Your cart: ${productCount} ${productCount === 1 ? 'item' : 'items'}`}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {productCount > 0 ? (
@@ -55,7 +55,10 @@ function CartModal({ show, onClose }) {
             </div>
           </>
         ) : (
-          <h2>There are no items in your cart!</h2>
+          <div className="d-flex flex-column align-items-center">
+            <h2>Your cart is emtpy!</h2>
+            <Button onClick={onClose} className="btn-dark">Continue shopping</Button>
+          </div>
         )}
       </Modal.Body>
     </Modal>

@@ -1,7 +1,6 @@
 import { API_BASE_URL } from "./api_url";
 
 export async function fetchAllProducts() {
-
   try {
     const response = await fetch(`${API_BASE_URL}/api/products`);
     if (!response.ok) {

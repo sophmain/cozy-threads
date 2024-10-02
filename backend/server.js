@@ -9,10 +9,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// app.use(cors({
-//     origin: 'http://your-frontend-domain.com',  // Update with your frontend domain
-//     credentials: true,
-//   }));
 app.use(express.static("public"));
 app.use(express.json());
 
@@ -43,13 +39,11 @@ app.get("/api/products/:id", async (req, res) => {
 // POST checkout items
 app.post("/api/checkout", async (req, res) => {
     try {
-        console.log('req', req)
       const items = req.body.items;
       let lineItems = [];
 
       // Ensure each item has a valid Stripe price ID
       items.forEach((item) => {
-        console.log('item', item)
         if (!item.id) {
           throw new Error(`Missing Stripe price ID for item: ${item.id}`);
         }
@@ -62,8 +56,8 @@ app.post("/api/checkout", async (req, res) => {
       const session = await stripe.checkout.sessions.create({
         line_items: lineItems,
         mode: "payment",
-        success_url: "http://localhost:3000/success",
-        cancel_url: "http://localhost:3000/cancel",
+        success_url: "https://cozy-threads-1.onrender.com/success",
+        cancel_url: "https://cozy-threads-1.onrender.com", // back to home
       });
 
       res.json({ url: session.url });

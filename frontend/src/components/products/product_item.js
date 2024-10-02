@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
-import { Card, Button, Form } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { CartContext } from "../../contexts/CartContext";
 
 function ProductItem({ product }) {
-  const { getProductQuantity, addOneToCart, removeOneFromCart } =
-    useContext(CartContext);
+  const { getProductQuantity, addOneToCart } = useContext(CartContext);
   const productQuantity = getProductQuantity(product.id);
 
   return (
-    <div className="col-4 mb-4" key={product.name}>
+    <div className="col-12 col-sm-6 col-md-4 mb-4" key={product.name}>
       <Card className="h-100">
         <Card.Img
           variant="top"
@@ -27,11 +26,18 @@ function ProductItem({ product }) {
         <Card.Footer>
           <div className="d-flex justify-content-end">
             {productQuantity > 0 ? (
-              <Button className="bg-dark border-dark text-white" onClick={() => addOneToCart(product.id)}>
-                Added to cart
+              <Button
+                className="bg-dark border-dark text-white"
+                onClick={() => addOneToCart(product.id)}
+              >
+                Added to cart!
               </Button>
             ) : (
-              <Button className="btn-outline-dark" onClick={() => addOneToCart(product.id)}>
+              <Button
+                className="btn-outline-dark"
+                variant="outline"
+                onClick={() => addOneToCart(product.id)}
+              >
                 Add to cart
               </Button>
             )}

@@ -12,7 +12,12 @@ export const CartContext = createContext({
 });
 
 export function CartProvider({ children }) {
-  const [cartProducts, setCartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState(() => {
+    // Load cart from local storage when the app loads
+    // With more time, would create user and cart in the BE
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
   const [totalCost, setTotalCost] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -84,6 +89,11 @@ export function CartProvider({ children }) {
     } else {
       setTotalCost(0); // Reset total cost if cart is empty
     }
+  }, [cartProducts]);
+
+  // Save cart to local storage whenever the cart changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartProducts));
   }, [cartProducts]);
 
   const contextValue = {
